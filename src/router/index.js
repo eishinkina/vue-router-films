@@ -1,34 +1,42 @@
-import VueRouter from 'vue-router'
-import AllFilmsPage from "./../pages/AllFilmsPage.vue"
-import MainPage from "../pages/MainPage.vue"
-import FilmPage from "./../pages/FilmPage.vue"
-// import FilmsLayout from "../pages/FilmsLayout.vue"
-import NotFound from "../pages/404.vue"
-
-
+import VueRouter from "vue-router";
+import AllFilmsPage from "./../pages/AllFilmsPage.vue";
+import MainPage from "../pages/MainPage.vue";
+import FilmPage from "./../pages/FilmPage.vue";
+import FilmsLayout from "../pages/FilmsLayout.vue";
+import NotFound from "../pages/404.vue";
 
 export default new VueRouter({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
-      path:'/',
-      name: 'main',
-      component: MainPage
+      path: "/",
+      name: "main",
+      component: MainPage,
     },
     {
-      path: '/films',
-      name: 'films',
-      component: AllFilmsPage
+      path: "/films",
+      component: FilmsLayout,
+      children: [
+        {
+          path: "",
+          name: "films",
+          component: AllFilmsPage,
+        },
+        {
+          path: ":id",
+          name: "filmPage",
+          component: FilmPage,
+        },
+        {
+          path: "*",
+          redirect: { name: 'films' }
+        },
+      ],
     },
     {
-      path: '/films/:id',
-      name: 'filmPage',
-      component: FilmPage
+      path: "*",
+      name: "NotFound",
+      component: NotFound,
     },
-    {
-      path: '*',
-      name: 'NotFound',
-      component: NotFound
-    }
-  ]
-})
+  ],
+});
