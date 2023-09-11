@@ -3,7 +3,7 @@ import AllFilmsPage from "./../pages/AllFilmsPage.vue";
 import MainPage from "../pages/MainPage.vue";
 import FilmPage from "./../pages/FilmPage.vue";
 import FilmsLayout from "../pages/FilmsLayout.vue";
-import NotFound from "../pages/404.vue";
+// import NotFound from "../pages/404.vue";
 
 export default new VueRouter({
   mode: "history",
@@ -42,8 +42,8 @@ export default new VueRouter({
     },
     {
       path: "*",
-      name: "NotFound",
-      component: NotFound,
+      name: "main",
+      component: MainPage ,
     },
   ],
 });
