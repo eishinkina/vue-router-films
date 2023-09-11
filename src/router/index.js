@@ -26,6 +26,13 @@ export default new VueRouter({
           path: ":id",
           name: "filmPage",
           component: FilmPage,
+          beforeEnter: (to, from, next) => {
+            if(localStorage.getItem('auth')) {
+              next()
+            } else {
+              next({name: 'films'})
+            }
+          }
         },
         {
           path: "*",
